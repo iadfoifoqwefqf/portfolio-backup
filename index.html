@@ -8,7 +8,6 @@
     body {
       margin: 0;
       background-color: black;
-      color: white;
       font-family: sans-serif;
       height: 100vh;
       display: flex;
@@ -17,36 +16,84 @@
     }
 
     .box {
+      width: 400px;
+      height: 250px;
       border: 2px solid white;
-      padding: 2rem 3rem;
-      font-size: 1.5rem;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       box-shadow: 0 0 20px red;
-      animation: pulseShadow 4s infinite ease-in-out;
+      position: relative;
+      animation: fanShadow 5s linear infinite;
     }
 
-    @keyframes pulseShadow {
+    @keyframes fanShadow {
       0% {
-        box-shadow: 0 0 15px red;
+        box-shadow:
+          0 0 20px red,
+          10px 0 20px orange,
+          -10px 0 20px yellow,
+          0 10px 20px green,
+          0 -10px 20px blue;
       }
       25% {
-        box-shadow: 0 0 25px orange;
+        box-shadow:
+          -10px 0 20px red,
+          0 10px 20px orange,
+          0 -10px 20px yellow,
+          10px 0 20px green,
+          -10px -10px 20px blue;
       }
       50% {
-        box-shadow: 0 0 25px yellow;
+        box-shadow:
+          0 0 20px blue,
+          -10px 0 20px green,
+          10px 0 20px red,
+          0 -10px 20px orange,
+          0 10px 20px yellow;
       }
       75% {
-        box-shadow: 0 0 25px blue;
+        box-shadow:
+          10px 0 20px yellow,
+          0 -10px 20px red,
+          -10px 0 20px blue,
+          0 10px 20px orange,
+          10px 10px 20px green;
       }
       100% {
-        box-shadow: 0 0 15px red;
+        box-shadow:
+          0 0 20px red,
+          10px 0 20px orange,
+          -10px 0 20px yellow,
+          0 10px 20px green,
+          0 -10px 20px blue;
+      }
+    }
+
+    .animated-text {
+      font-size: 1.8rem;
+      background: linear-gradient(120deg, white, silver, white);
+      background-size: 200%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s infinite linear;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: -100% 0;
+      }
+      100% {
+        background-position: 200% 0;
       }
     }
   </style>
 </head>
 <body>
   <div class="box">
-    On Process. Stay Tuned!
+    <div class="animated-text">On Process. Stay Tuned!</div>
   </div>
 </body>
 </html>
