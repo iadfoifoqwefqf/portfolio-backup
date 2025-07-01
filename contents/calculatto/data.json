@@ -1,0 +1,8 @@
+{
+  "title": "CalcuLatto",
+  "releaseDate": "March 15, 2024",
+  "description": "A scientific calculator app with advanced math features and clean UI.",
+  "techStack": ["Android", "Java"],
+  "buttonText": "Get it on Google Play",
+  "buttonLink": "#"
+}
