@@ -78,4 +78,75 @@ body {
   width: 60%;
   height: 100%;
   background: #111;
-  border-left: 2
+  border-left: 2px solid white;
+  padding: 2rem;
+  transition: right 0.6s ease;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.right-panel.visible {
+  right: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.portfolio-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-section .meta {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.portfolio-section .description {
+  margin: 1rem 0;
+}
+
+.media {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.media img {
+  border-radius: 8px;
+}
+
+.tech-stack {
+  margin: 1rem 0;
+}
+
+.tech-stack span {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.visit-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+}
