@@ -22,10 +22,7 @@ function showPortfolio(name, element) {
   rightPanel.classList.add('visible');
 
   fetch(`contents/${name}/data.json`)
-    .then(res => {
-      if (!res.ok) throw new Error("Portfolio data not found.");
-      return res.json();
-    })
+    .then(res => res.json())
     .then(data => {
       const screenshotClass = data.type === "mobile" ? "mobile" : "website";
 
