@@ -1,79 +1,81 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: sans-serif;
-  background: black;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #000;
   color: white;
-  overflow-x: hidden;
-}
-
-.main-wrapper {
-  display: flex;
+  overflow: hidden;
   height: 100vh;
-  transition: transform 0.6s ease;
 }
 
-.sidebar {
+.main-container {
+  display: flex;
   width: 100%;
-  max-width: 500px;
+  height: 100vh;
+  position: relative;
+}
+
+.left-panel {
+  width: 40%;
+  min-width: 300px;
   padding: 2rem;
   transition: transform 0.6s ease;
-  z-index: 1;
+  z-index: 2;
 }
 
-.sidebar.shrink {
-  transform: translateX(-100px);
+.left-panel.shifted {
+  transform: translateX(-20%);
 }
 
-.title {
-  font-size: 2rem;
+.business-name {
+  font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.project-list {
+.portfolio-list {
   list-style: none;
-  padding: 0;
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.project-list li {
-  margin: 1rem 0;
+.portfolio-list li {
+  font-size: 1.3rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 50px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
-.project-list li:hover {
-  color: #ccc;
+.portfolio-list li:hover,
+.portfolio-list li.active {
+  border-color: white;
+  background-color: rgba(255,255,255,0.1);
 }
 
-.available {
+.external-section {
   margin-top: 3rem;
+  text-align: center;
 }
 
-.logos img {
+.external-logos img {
   height: 40px;
   margin: 0 10px;
-  vertical-align: middle;
 }
 
-.content-panel {
-  width: 0;
-  overflow: hidden;
+/* Right content panel */
+.right-panel {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  height: 100%;
   background: #111;
-  color: white;
-  transition: width 0.6s ease, padding 0.6s ease;
-  padding: 0;
-}
-
-.content-panel.show {
-  width: calc(100% - 500px);
-  padding: 2rem;
-}
-
-.content-panel img {
-  border-radius: 6px;
-}
-
-.hidden {
-  display: none;
-}
+  border-left: 2
