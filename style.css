@@ -25,7 +25,7 @@ body, html {
   overflow: hidden;
 }
 
-/* LEFT SIDE */
+/* LEFT PANEL */
 .left-panel {
   flex: 1;
   display: flex;
@@ -72,7 +72,7 @@ body, html {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* RIGHT SIDE */
+/* RIGHT PANEL */
 .right-panel {
   width: 0;
   transition: width 0.5s ease;
@@ -115,11 +115,32 @@ body, html {
   gap: 1rem;
   margin-bottom: 1rem;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
-.media img {
+.screenshot-container {
   border-radius: 8px;
-  background: #333;
+  background: #222;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshot-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.screenshot-container.mobile {
+  width: 160px;
+  height: 280px;
+}
+
+.screenshot-container.website {
+  width: 300px;
+  height: 180px;
 }
 
 .tech-stack {
@@ -145,7 +166,7 @@ body, html {
   font-weight: bold;
 }
 
-/* FOOTER */
+/* BOTTOM BAR */
 .bottom-bar {
   text-align: center;
   padding: 1rem;
@@ -169,40 +190,4 @@ body, html {
   background: white;
   border-radius: 8px;
   padding: 5px;
-}
-
-.media {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.screenshot-container {
-  flex-shrink: 0;
-  border-radius: 8px;
-  background: #222;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.screenshot-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Portrait layout for mobile */
-.screenshot-container.mobile {
-  width: 160px;
-  height: 280px;
-}
-
-/* Landscape layout for websites */
-.screenshot-container.website {
-  width: 300px;
-  height: 180px;
 }
