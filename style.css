@@ -22,13 +22,12 @@ body {
 
 /* LEFT PANEL */
 .left-panel {
-  width: 100%;
-  max-width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: transform 0.6s ease, padding 0.6s ease;
+  transition: transform 0.6s ease, align-items 0.6s ease, justify-content 0.6s ease, padding 0.6s ease;
   text-align: center;
   padding: 0;
   z-index: 2;
@@ -39,6 +38,7 @@ body {
   justify-content: flex-start;
   transform: translateX(-20%);
   padding: 2rem;
+  text-align: left;
 }
 
 .business-name {
@@ -50,7 +50,6 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -180,15 +179,4 @@ body {
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
-}
-
-/* RESPONSIVE (optional) */
-@media (max-width: 768px) {
-  .right-panel {
-    width: 100%;
-  }
-
-  .left-panel.shifted {
-    transform: translateX(-100%);
-  }
 }
