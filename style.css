@@ -17,24 +17,33 @@ body {
   width: 100%;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
+/* LEFT PANEL */
 .left-panel {
-  width: 40%;
-  min-width: 300px;
-  padding: 2rem;
-  transition: transform 0.6s ease;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease, padding 0.6s ease;
+  text-align: center;
+  padding: 0;
   z-index: 2;
 }
 
 .left-panel.shifted {
+  align-items: flex-start;
+  justify-content: flex-start;
   transform: translateX(-20%);
+  padding: 2rem;
 }
 
 .business-name {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
-  text-align: center;
 }
 
 .portfolio-list {
@@ -43,6 +52,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .portfolio-list li {
@@ -57,20 +67,35 @@ body {
 .portfolio-list li:hover,
 .portfolio-list li.active {
   border-color: white;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* EXTERNAL LINKS */
 .external-section {
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
+}
+
+.external-section p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.external-logos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .external-logos img {
   height: 40px;
-  margin: 0 10px;
+  background: white;
+  border-radius: 8px;
+  padding: 5px;
 }
 
-/* Right content panel */
+/* RIGHT PANEL */
 .right-panel {
   position: absolute;
   top: 0;
@@ -103,6 +128,7 @@ body {
   cursor: pointer;
 }
 
+/* PORTFOLIO CONTENT */
 .portfolio-section h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
@@ -116,16 +142,20 @@ body {
 
 .portfolio-section .description {
   margin: 1rem 0;
+  line-height: 1.5;
 }
 
 .media {
   display: flex;
   gap: 1rem;
   margin: 1rem 0;
+  flex-wrap: wrap;
 }
 
 .media img {
   border-radius: 8px;
+  max-width: 100%;
+  height: auto;
 }
 
 .tech-stack {
@@ -136,8 +166,9 @@ body {
   display: inline-block;
   margin-right: 10px;
   padding: 5px 10px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
+  font-size: 0.9rem;
 }
 
 .visit-btn {
@@ -149,4 +180,15 @@ body {
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
+}
+
+/* RESPONSIVE (optional) */
+@media (max-width: 768px) {
+  .right-panel {
+    width: 100%;
+  }
+
+  .left-panel.shifted {
+    transform: translateX(-100%);
+  }
 }
