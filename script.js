@@ -1,13 +1,26 @@
+let currentPortfolio = null;
+
 function showPortfolio(name, element) {
   const leftPanel = document.getElementById('leftPanel');
   const rightPanel = document.getElementById('rightPanel');
   const content = document.getElementById('portfolioContent');
 
-  // Highlight active
+  const isSame = currentPortfolio === name;
+  
+  // Reset active state
   document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
-  if (element) element.classList.add('active');
 
-  // Animate
+  if (isSame) {
+    // If clicked same item again, hide the box
+    leftPanel.classList.remove('shifted');
+    rightPanel.classList.remove('visible');
+    currentPortfolio = null;
+    return;
+  }
+
+  // Update state and visuals
+  currentPortfolio = name;
+  element.classList.add('active');
   leftPanel.classList.add('shifted');
   rightPanel.classList.add('visible');
 
@@ -37,4 +50,5 @@ function hidePortfolio() {
   document.getElementById('leftPanel').classList.remove('shifted');
   document.getElementById('rightPanel').classList.remove('visible');
   document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
+  currentPortfolio = null;
 }
