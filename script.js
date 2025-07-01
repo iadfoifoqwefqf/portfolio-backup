@@ -40,7 +40,7 @@ function showPortfolio(name, element) {
             <a class="visit-btn" href="${data.buttonLink}" target="_blank">${data.buttonText}</a>
           </div>
           <div class="screenshot-container ${screenshotClass}">
-            <img src="contents/${name}/screenshot.png" alt="Screenshot" />
+            <img src="contents/${name}/screenshot.jpg" alt="Screenshot" />
           </div>
         </div>
       `;
