@@ -8,15 +8,25 @@
 </head>
 <body>
   <div class="main-container">
-    <div class="left-panel" id="leftPanel">
-  <div class="left-content">
-    <h1 class="business-name">SYNCERTICA</h1>
-    <ul class="portfolio-list">
-      <li onclick="showPortfolio('calculatto', this)">CalcuLatto</li>
-      <li onclick="showPortfolio('billant', this)">Billant</li>
-      <li onclick="showPortfolio('jdih', this)">JDIH</li>
-    </ul>
-    <div class="external-section">
+    <div class="main-content">
+      <div class="left-panel" id="leftPanel">
+        <div class="left-content">
+          <h1 class="business-name">SYNCERTICA</h1>
+          <ul class="portfolio-list">
+            <li onclick="showPortfolio('calculatto', this)">CalcuLatto</li>
+            <li onclick="showPortfolio('billant', this)">Billant</li>
+            <li onclick="showPortfolio('jdih', this)">JDIH</li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-panel" id="rightPanel">
+        <div id="portfolioContent" class="portfolio-box">
+          <!-- Dynamic content inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
       <p>Also available on:</p>
       <div class="external-logos">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/WordPress_logo.svg" alt="WordPress" />
@@ -25,13 +35,8 @@
       </div>
     </div>
   </div>
-</div>
 
-    <div class="right-panel" id="rightPanel">
-      <button class="close-btn" onclick="hidePortfolio()">×</button>
-      <div id="portfolioContent">Loading...</div>
-    </div>
-  </div>
   <script src="script.js"></script>
 </body>
+
 </html>
