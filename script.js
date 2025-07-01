@@ -1,28 +1,40 @@
-function loadContent(projectName) {
-  const sidebar = document.getElementById('sidebar');
-  const panel = document.getElementById('contentPanel');
+function showPortfolio(name, element) {
+  const leftPanel = document.getElementById('leftPanel');
+  const rightPanel = document.getElementById('rightPanel');
+  const content = document.getElementById('portfolioContent');
 
-  fetch(`contents/${projectName}/data.json`)
+  // Highlight active
+  document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
+  if (element) element.classList.add('active');
+
+  // Animate
+  leftPanel.classList.add('shifted');
+  rightPanel.classList.add('visible');
+
+  fetch(`contents/${name}/data.json`)
     .then(res => res.json())
     .then(data => {
-      panel.classList.remove('hidden');
-      sidebar.classList.add('shrink');
-      panel.classList.add('show');
-
-      panel.innerHTML = `
-        <h2>${data.title}</h2>
-        <p><strong>Release date:</strong> ${data.releaseDate}</p>
-        <p>${data.description}</p>
-        <div style="display:flex; gap:1rem; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:1rem;">
-          <img src="contents/${projectName}/logo.png" alt="Logo" width="50" height="50">
-          <img src="contents/${projectName}/screenshot.png" alt="Screenshot" width="200">
+      content.innerHTML = `
+        <div class="portfolio-section">
+          <h2>${data.title}</h2>
+          <div class="meta"><strong>Release:</strong> ${data.releaseDate}</div>
+          <div class="description">${data.description}</div>
+          <div class="media">
+            <img src="contents/${name}/screenshot.png" width="250" />
+            <img src="contents/${name}/logo.png" width="60" />
+          </div>
+          <div class="tech-stack">
+            <strong>Tech stacks:</strong><br/>
+            ${data.techStack.map(t => `<span>${t}</span>`).join('')}
+          </div>
+          <a class="visit-btn" href="${data.buttonLink}" target="_blank">${data.buttonText}</a>
         </div>
-        <h4 style="margin-top:1rem;">Tech stacks</h4>
-        <p>${data.techStack.join(', ')}</p>
-        <a href="${data.buttonLink}" target="_blank">
-          <button style="margin-top:1rem;">${data.buttonText}</button>
-        </a>
       `;
-    })
-    .catch(() => alert('Failed to load project.'));
+    });
+}
+
+function hidePortfolio() {
+  document.getElementById('leftPanel').classList.remove('shifted');
+  document.getElementById('rightPanel').classList.remove('visible');
+  document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
 }
