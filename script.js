@@ -5,50 +5,57 @@ function showPortfolio(name, element) {
   const rightPanel = document.getElementById('rightPanel');
   const content = document.getElementById('portfolioContent');
 
+  // If the same portfolio is clicked again, close the panel
   const isSame = currentPortfolio === name;
-  
-  // Reset active state
+
+  // Remove active state from all items
   document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
 
   if (isSame) {
-    // If clicked same item again, hide the box
+    // Hide panel and reset
     leftPanel.classList.remove('shifted');
     rightPanel.classList.remove('visible');
     currentPortfolio = null;
     return;
   }
 
-  // Update state and visuals
+  // Mark this as the current selection
   currentPortfolio = name;
-  element.classList.add('active');
+
+  // Highlight the clicked item
+  if (element) element.classList.add('active');
+
+  // Animate layout
   leftPanel.classList.add('shifted');
   rightPanel.classList.add('visible');
 
+  // Load content from JSON
   fetch(`contents/${name}/data.json`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error("Portfolio data not found.");
+      return res.json();
+    })
     .then(data => {
       content.innerHTML = `
-        <div class="portfolio-section">
-          <h2>${data.title}</h2>
-          <div class="meta"><strong>Release:</strong> ${data.releaseDate}</div>
-          <div class="description">${data.description}</div>
-          <div class="media">
-            <img src="contents/${name}/screenshot.png" width="250" />
-            <img src="contents/${name}/logo.png" width="60" />
-          </div>
-          <div class="tech-stack">
-            <strong>Tech stacks:</strong><br/>
-            ${data.techStack.map(t => `<span>${t}</span>`).join('')}
-          </div>
-          <a class="visit-btn" href="${data.buttonLink}" target="_blank">${data.buttonText}</a>
-        </div>
-      `;
-    });
-}
+        <h2>${data.title}</h2>
+        <div class="meta"><strong>Release date:</strong> ${data.releaseDate}</div>
+        <div class="description">${data.description}</div>
 
-function hidePortfolio() {
-  document.getElementById('leftPanel').classList.remove('shifted');
-  document.getElementById('rightPanel').classList.remove('visible');
-  document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
-  currentPortfolio = null;
+        <div class="media">
+          <img src="contents/${name}/screenshot.png" alt="Screenshot" width="220" height="120" />
+          <img src="contents/${name}/logo.png" alt="Logo" width="60" height="60" />
+        </div>
+
+        <div class="tech-stack">
+          <strong>Tech stacks:</strong><br>
+          ${data.techStack.map(t => `<span>${t}</span>`).join('')}
+        </div>
+
+        <a class="visit-btn" href="${data.buttonLink}" target="_blank">${data.buttonText}</a>
+      `;
+    })
+    .catch(err => {
+      content.innerHTML = `<p style="color: red;">Failed to load project data.</p>`;
+      console.error(err);
+    });
 }
