@@ -1,6 +1,13 @@
 let currentPortfolio = null;
+const clickSound = new Audio("assets/beep.mp3");
+clickSound.volume = 0.2;
+let hasBeeped = false;
 
 function showPortfolio(name, element) {
+   if (!hasBeeped) {
+    clickSound.play();
+    hasBeeped = true;
+  }
   const leftPanel = document.getElementById('leftPanel');
   const rightPanel = document.getElementById('rightPanel');
   const content = document.getElementById('portfolioContent');
