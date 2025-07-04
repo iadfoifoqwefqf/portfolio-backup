@@ -1,8 +1,7 @@
 let currentPortfolio = null;
-let boxHasBeenOpened = false;
+let boxIsOpen = false;
 
 const clickSound = new Audio("assets/beep.mp3");
-clickSound.volume = 0.2;
 
 function showPortfolio(name, element) {
   const leftPanel = document.getElementById('leftPanel');
@@ -14,17 +13,19 @@ function showPortfolio(name, element) {
   document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
 
   if (isSame) {
-    // Close box (no sound)
+    // User clicked the same item — close the box
     leftPanel.classList.remove('shifted');
     rightPanel.classList.remove('visible');
     currentPortfolio = null;
+    boxIsOpen = false;
     return;
   }
 
-  // ✅ Only play beep if it's the first time opening the box
-  if (!boxHasBeenOpened) {
+  // ✅ Only play sound when box is transitioning from closed → open
+  if (!boxIsOpen) {
+    clickSound.currentTime = 0;
     clickSound.play();
-    boxHasBeenOpened = true;
+    boxIsOpen = true;
   }
 
   currentPortfolio = name;
