@@ -1,13 +1,10 @@
 let currentPortfolio = null;
+let boxHasBeenOpened = false;
+
 const clickSound = new Audio("assets/beep.mp3");
 clickSound.volume = 0.2;
-let hasBeeped = false;
 
 function showPortfolio(name, element) {
-   if (!hasBeeped) {
-    clickSound.play();
-    hasBeeped = true;
-  }
   const leftPanel = document.getElementById('leftPanel');
   const rightPanel = document.getElementById('rightPanel');
   const content = document.getElementById('portfolioContent');
@@ -17,10 +14,17 @@ function showPortfolio(name, element) {
   document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
 
   if (isSame) {
+    // Close box (no sound)
     leftPanel.classList.remove('shifted');
     rightPanel.classList.remove('visible');
     currentPortfolio = null;
     return;
+  }
+
+  // ✅ Only play beep if it's the first time opening the box
+  if (!boxHasBeenOpened) {
+    clickSound.play();
+    boxHasBeenOpened = true;
   }
 
   currentPortfolio = name;
