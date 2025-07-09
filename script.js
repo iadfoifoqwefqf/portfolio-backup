@@ -9,7 +9,7 @@ let boxIsOpen = false;
 // 📁 Project metadata (static)
 const projects = [
   { id: 'calculatto', title: 'CalcuLatto', type: 'mobile' },
-  { id: 'billant', title: 'Billant', type: 'website' },
+  { id: 'billant', title: 'Billant', type: 'mobile' },
   { id: 'jdih', title: 'JDIH', type: 'website' }
 ];
 
