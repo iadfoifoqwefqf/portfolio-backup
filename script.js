@@ -1,8 +1,53 @@
+// 🔊 Audio setup
+const clickSound = new Audio("assets/beep.mp3");
+clickSound.volume = 0.2;
+
+// 💾 Track open/close state
 let currentPortfolio = null;
 let boxIsOpen = false;
 
-const clickSound = new Audio("assets/beep.mp3");
+// 📁 Project metadata (static)
+const projects = [
+  { id: 'calculatto', title: 'CalcuLatto', type: 'mobile' },
+  { id: 'billant', title: 'Billant', type: 'website' },
+  { id: 'jdih', title: 'JDIH', type: 'website' }
+];
 
+// 🎯 Active category filters
+let activeCategories = ['mobile', 'website'];
+
+// 🔘 Toggle category filters
+function toggleCategory(type) {
+  const index = activeCategories.indexOf(type);
+  const toggleBtn = document.getElementById(type === 'mobile' ? 'mobileToggle' : 'webToggle');
+
+  if (index !== -1) {
+    activeCategories.splice(index, 1);
+    toggleBtn.classList.remove('active');
+  } else {
+    activeCategories.push(type);
+    toggleBtn.classList.add('active');
+  }
+
+  updateProjectList();
+}
+
+// 🔁 Update portfolio list based on filters
+function updateProjectList() {
+  const list = document.querySelector('.portfolio-list');
+  list.innerHTML = '';
+
+  projects
+    .filter(p => activeCategories.includes(p.type))
+    .forEach(p => {
+      const li = document.createElement('li');
+      li.textContent = p.title;
+      li.onclick = () => showPortfolio(p.id, li);
+      list.appendChild(li);
+    });
+}
+
+// 📦 Load and show portfolio content
 function showPortfolio(name, element) {
   const leftPanel = document.getElementById('leftPanel');
   const rightPanel = document.getElementById('rightPanel');
@@ -10,10 +55,11 @@ function showPortfolio(name, element) {
 
   const isSame = currentPortfolio === name;
 
+  // Clear selection from all list items
   document.querySelectorAll('.portfolio-list li').forEach(li => li.classList.remove('active'));
 
   if (isSame) {
-    // User clicked the same item — close the box
+    // 🔒 Close the box
     leftPanel.classList.remove('shifted');
     rightPanel.classList.remove('visible');
     currentPortfolio = null;
@@ -21,13 +67,14 @@ function showPortfolio(name, element) {
     return;
   }
 
-  // ✅ Only play sound when box is transitioning from closed → open
+  // 🔊 Only beep when box is opening from closed state
   if (!boxIsOpen) {
     clickSound.currentTime = 0;
     clickSound.play();
     boxIsOpen = true;
   }
 
+  // ✅ Show box and load content
   currentPortfolio = name;
   element.classList.add('active');
   leftPanel.classList.add('shifted');
@@ -62,3 +109,6 @@ function showPortfolio(name, element) {
       console.error(err);
     });
 }
+
+// 🟢 Load portfolio list on first page load
+updateProjectList();
