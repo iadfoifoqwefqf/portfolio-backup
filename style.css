@@ -51,10 +51,23 @@ body, html {
 }
 
 .portfolio-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  max-height: 300px; /* or any height that fits your layout */
+  overflow-y: auto;
+  padding-right: 10px; /* for scrollbar clearance */
+}
+
+/* Optional: custom scrollbar (modern browsers) */
+.portfolio-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.portfolio-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.portfolio-list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .portfolio-list li {
