@@ -1,17 +1,11 @@
-# Container Configuration
-# This is a template for container configuration
-# Replace this with your actual container configuration
+# Dockerfile
+FROM alpine:3.19
 
-# Example Dockerfile:
-FROM node:18-alpine
+RUN apk add --no-cache curl unzip bash \
+    && curl -fsSL https://releases.hashicorp.com/terraform/1.9.5/terraform_1.9.5_linux_amd64.zip -o terraform.zip \
+    && unzip terraform.zip \
+    && mv terraform /usr/local/bin/ \
+    && rm terraform.zip
 
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm ci --only=production
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+ENTRYPOINT ["/bin/bash"]
